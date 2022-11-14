@@ -23,34 +23,8 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-
-//def gradleProperties = new Properties()
-//def gradlePropertiesFile = new File(buildscript.sourceFile.parentFile.parentFile, 'gradle.properties')
-//if (gradlePropertiesFile.exists()) {
-//    gradlePropertiesFile.withReader('UTF-8') { reader ->
-//        gradleProperties.load(reader)
-//    }
-//}
-//
-//def artifactory_contextUrl = gradleProperties.getProperty('artifactory_contextUrl')
-//if (artifactory_contextUrl == null) {
-//    artifactory_contextUrl = 'https://sociomile.jfrog.io/artifactory'
-//}
-//
-//def artifactory_user = gradleProperties.getProperty('artifactory_user')
-//if (artifactory_user == null) {
-//    artifactory_user = 'meynisa03@gmail.com'
-//}
-//
-//def artifactory_password = gradleProperties.getProperty('artifactory_password')
-//if (artifactory_password == null) {
-//    artifactory_password = 'AKCp8nH4ZkYYd8L8wVMiuwRzDfrxQyqheVvSkWZ9uVhk65p72dN3mXw9mZc5MoEjiMHZCxqgK'
-//}
-
 apply plugin: 'com.android.library'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-//apply plugin: 'com.jfrog.artifactory'
-//apply plugin: 'maven-publish'
 
 group 'com.ivo.scm_mobile_sdk'
 version '1.0'
@@ -143,60 +117,23 @@ flutter {
 //    }
 //}
 
-//subprojects {
-//    apply plugin: 'maven-publish'
-//
-//    publishing {
-//
-//        repositories {
-//            maven { url "https://jitpack.io" }
-//        }
-//
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//
-//                groupId = 'com.github.Meynisa'
-//                artifactId = 'scm_mobile_sdk'
-//                version = '0.0.1'
-//            }
-//        }
-//    }
-//}
+subprojects {
+    apply plugin: 'maven-publish'
 
-//subprojects {
-//    plugins.withId('java') {
-//        apply plugin: 'maven-publish'
-//
-//        publishing {
-//
-//            repositories {
-//                maven {
-//                    url "https://maven.pkg.jetbrains.space/sociomile/p/sociomile/sociomile-maven"
-//                    credentials {
-//                        username = "meynisa.nur"
-//                        password = "eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiIxb0NzdXcxWFVNVDciLCJhdWQiOiJjaXJjbGV0LXdlYi11aSIsIm9yZ0RvbWFpbiI6InNvY2lvbWlsZSIsIm5hbWUiOiJtZXluaXNhLm51ciIsImlzcyI6Imh0dHBzOlwvXC9zb2Npb21pbGUuamV0YnJhaW5zLnNwYWNlIiwicGVybV90b2tlbiI6InhsdGZWMEh3ZVpzIiwicHJpbmNpcGFsX3R5cGUiOiJVU0VSIiwiaWF0IjoxNjY4MDYxMDU5fQ.lBWp8Dt96stw6WEBBQWClCJegxDtYbA36dRPjaX5TfHr4xohMCiEKjGXh6j95CPyx_mWxBlpngzYwQ69i_Fw-xXG1KFbexe7huORkMBZR30Ak_b5HTULm4FibNUUo831HDx-5SKIoaLZ3KuZtxzKepCXTVPj5W2IZnpJFrWMcOc"
-//                    }
-//                }
-//            }
-//
-//            publications {
-//                maven(MavenPublication) {
-//                    groupId = "org.company"
-//                    artifactId = "sample"
-//                    version = "0.9-SNAPSHOT"
-//                    from components.java
-//                }
-//            }
-//            repositories {
-//                maven {
-//                    url "https://maven.pkg.jetbrains.space/sociomile/p/sociomile/sociomile-maven"
-//                    credentials {
-//                        username = "meynisa.nur"
-//                        password = "eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiIxb0NzdXcxWFVNVDciLCJhdWQiOiJjaXJjbGV0LXdlYi11aSIsIm9yZ0RvbWFpbiI6InNvY2lvbWlsZSIsIm5hbWUiOiJtZXluaXNhLm51ciIsImlzcyI6Imh0dHBzOlwvXC9zb2Npb21pbGUuamV0YnJhaW5zLnNwYWNlIiwicGVybV90b2tlbiI6InhsdGZWMEh3ZVpzIiwicHJpbmNpcGFsX3R5cGUiOiJVU0VSIiwiaWF0IjoxNjY4MDYxMDU5fQ.lBWp8Dt96stw6WEBBQWClCJegxDtYbA36dRPjaX5TfHr4xohMCiEKjGXh6j95CPyx_mWxBlpngzYwQ69i_Fw-xXG1KFbexe7huORkMBZR30Ak_b5HTULm4FibNUUo831HDx-5SKIoaLZ3KuZtxzKepCXTVPj5W2IZnpJFrWMcOc"
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+    publishing {
+
+        repositories {
+            maven { url "https://jitpack.io" }
+        }
+
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.Meynisa'
+                artifactId = 'scm_mobile_sdk'
+                version = '0.0.5'
+            }
+        }
+    }
+}
