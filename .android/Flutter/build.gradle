@@ -25,6 +25,7 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.library'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'maven-publish'
 
 group 'com.ivo.scm_mobile_sdk'
 version '1.0'
@@ -100,40 +101,39 @@ flutter {
 //    }
 //}
 
-//afterEvaluate {
-//    publishing {
-//        repositories{
-//            maven { url "https://jitpack.io" }
-//        }
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//
-//                groupId = 'com.github.Meynisa'
-//                artifactId = 'scm_mobile_sdk'
-//                version = '0.0.1'
-//            }
-//        }
-//    }
-//}
-
-subprojects {
-    apply plugin: 'maven-publish'
-
+afterEvaluate {
     publishing {
-
-        repositories {
+        repositories{
             maven { url "https://jitpack.io" }
         }
-
         publications {
             release(MavenPublication) {
                 from components.release
 
                 groupId = 'com.github.Meynisa'
                 artifactId = 'scm_mobile_sdk'
-                version = '0.0.5'
+                version = '0.0.3'
             }
         }
     }
 }
+
+//subprojects {
+//
+//    publishing {
+//
+//        repositories {
+//            maven { url "https://jitpack.io" }
+//        }
+//
+//        publications {
+//            release(MavenPublication) {
+//                from components.release
+//
+//                groupId = 'com.github.Meynisa'
+//                artifactId = 'scm_mobile_sdk'
+//                version = '0.0.5'
+//            }
+//        }
+//    }
+//}
