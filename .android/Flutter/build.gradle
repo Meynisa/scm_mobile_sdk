@@ -101,39 +101,39 @@ flutter {
 //    }
 //}
 
-afterEvaluate {
-    publishing {
-        repositories{
-            maven { url "https://jitpack.io" }
-        }
-        publications {
-            release(MavenPublication) {
-                from components.release
-
-                groupId = 'com.github.Meynisa'
-                artifactId = 'scm_mobile_sdk'
-                version = '0.0.3'
-            }
-        }
-    }
-}
-
-//subprojects {
-//
+//afterEvaluate {
 //    publishing {
-//
-//        repositories {
+//        repositories{
 //            maven { url "https://jitpack.io" }
 //        }
-//
 //        publications {
 //            release(MavenPublication) {
 //                from components.release
 //
 //                groupId = 'com.github.Meynisa'
 //                artifactId = 'scm_mobile_sdk'
-//                version = '0.0.5'
+//                version = '0.0.3'
 //            }
 //        }
 //    }
 //}
+
+subprojects {
+
+    publishing {
+
+        repositories {
+            maven { url "https://jitpack.io" }
+        }
+
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.Meynisa'
+                artifactId = 'scm_mobile_sdk'
+                version = '0.0.5'
+            }
+        }
+    }
+}
