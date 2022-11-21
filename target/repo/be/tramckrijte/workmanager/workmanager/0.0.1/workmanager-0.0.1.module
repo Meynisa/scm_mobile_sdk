@@ -1,0 +1,261 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "be.tramckrijte.workmanager",
+    "module": "workmanager",
+    "version": "0.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "debugVariantAllApiPublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_debug",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "workmanager-0.0.1-debug.aar",
+          "url": "workmanager-0.0.1-debug.aar",
+          "size": 66933,
+          "sha512": "de588633ec58b8fdf4006f1ddf8a8a685f15497bc48e9836fdf56add812b6fc53c27105280cdeadd8a128ebdf5f80e811a515c1c99ec4e1d49d5484611b43b98",
+          "sha256": "cf859152b71ac30c53d4238b7b20ca396cc767e125e1366d4983d70c780b4a85",
+          "sha1": "1367734a7e5b0004b7e812939bc1ddf66025e968",
+          "md5": "b5164f9e340d47e345fdd6f299638336"
+        }
+      ]
+    },
+    {
+      "name": "debugVariantAllRuntimePublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_debug",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk7",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "androidx.work",
+          "module": "work-runtime",
+          "version": {
+            "requires": "2.7.1"
+          }
+        },
+        {
+          "group": "androidx.concurrent",
+          "module": "concurrent-futures",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "workmanager-0.0.1-debug.aar",
+          "url": "workmanager-0.0.1-debug.aar",
+          "size": 66933,
+          "sha512": "de588633ec58b8fdf4006f1ddf8a8a685f15497bc48e9836fdf56add812b6fc53c27105280cdeadd8a128ebdf5f80e811a515c1c99ec4e1d49d5484611b43b98",
+          "sha256": "cf859152b71ac30c53d4238b7b20ca396cc767e125e1366d4983d70c780b4a85",
+          "sha1": "1367734a7e5b0004b7e812939bc1ddf66025e968",
+          "md5": "b5164f9e340d47e345fdd6f299638336"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantAllApiPublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "release",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_release",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "workmanager-0.0.1-release.aar",
+          "url": "workmanager-0.0.1-release.aar",
+          "size": 64390,
+          "sha512": "edafbb32ab151b2439dbcf7c256f4473c770a78ed3ca9db017c95a1c3c089c055e57ad1c542a588954a3e69e63bf4f7e2b8a51bb9663220b7337781fe099de8d",
+          "sha256": "f0f3e9cec338a66e8c00b43ca2cbc352cfadfcbe0c354406f9250672f9ec6d70",
+          "sha1": "dacff28376d635889781f5bbfc2cb8863bb6c516",
+          "md5": "e83f447a60c4913e18150266dad08407"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantAllRuntimePublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "release",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_release",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk7",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "androidx.work",
+          "module": "work-runtime",
+          "version": {
+            "requires": "2.7.1"
+          }
+        },
+        {
+          "group": "androidx.concurrent",
+          "module": "concurrent-futures",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "workmanager-0.0.1-release.aar",
+          "url": "workmanager-0.0.1-release.aar",
+          "size": 64390,
+          "sha512": "edafbb32ab151b2439dbcf7c256f4473c770a78ed3ca9db017c95a1c3c089c055e57ad1c542a588954a3e69e63bf4f7e2b8a51bb9663220b7337781fe099de8d",
+          "sha256": "f0f3e9cec338a66e8c00b43ca2cbc352cfadfcbe0c354406f9250672f9ec6d70",
+          "sha1": "dacff28376d635889781f5bbfc2cb8863bb6c516",
+          "md5": "e83f447a60c4913e18150266dad08407"
+        }
+      ]
+    },
+    {
+      "name": "profileVariantAllApiPublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "profile",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_profile",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "workmanager-0.0.1-profile.aar",
+          "url": "workmanager-0.0.1-profile.aar",
+          "size": 64405,
+          "sha512": "053b630da9c2e1ef862b253edfbe515981b073b1704bc899c92431323fee1f7bbeb5809293e0ccfabe9e539497f51d411807a8472ddf7339494cc6ef03e03a4a",
+          "sha256": "57e41676d5bb3d8addb5411ed50757754cef8472e52569689b07ba5ab1c2cc92",
+          "sha1": "6318f36b98f2d26f1957707aea5a6a6575ebeb23",
+          "md5": "6da3dfdfb71087717fe5709b6295cbbf"
+        }
+      ]
+    },
+    {
+      "name": "profileVariantAllRuntimePublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "profile",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_profile",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk7",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "androidx.work",
+          "module": "work-runtime",
+          "version": {
+            "requires": "2.7.1"
+          }
+        },
+        {
+          "group": "androidx.concurrent",
+          "module": "concurrent-futures",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "workmanager-0.0.1-profile.aar",
+          "url": "workmanager-0.0.1-profile.aar",
+          "size": 64405,
+          "sha512": "053b630da9c2e1ef862b253edfbe515981b073b1704bc899c92431323fee1f7bbeb5809293e0ccfabe9e539497f51d411807a8472ddf7339494cc6ef03e03a4a",
+          "sha256": "57e41676d5bb3d8addb5411ed50757754cef8472e52569689b07ba5ab1c2cc92",
+          "sha1": "6318f36b98f2d26f1957707aea5a6a6575ebeb23",
+          "md5": "6da3dfdfb71087717fe5709b6295cbbf"
+        }
+      ]
+    }
+  ]
+}

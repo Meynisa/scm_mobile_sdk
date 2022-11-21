@@ -1,0 +1,219 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.it_nomads.fluttersecurestorage",
+    "module": "flutter_secure_storage",
+    "version": "0.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "debugVariantAllApiPublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_debug",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "flutter_secure_storage-0.0.1-debug.aar",
+          "url": "flutter_secure_storage-0.0.1-debug.aar",
+          "size": 27756,
+          "sha512": "8509a1e464264bbbd69d11ef68ce4b5cdcb7623fb4fe7962dbffd37e1740b7aeff4aa227a5341ea5197f8293460dddf1b589c3d9a594eb1103501c1a67f865e7",
+          "sha256": "755fa56d125ba92575d855003cc2e1630f2dabbfc003c866c971c0bb635cdc07",
+          "sha1": "d14b08800cf19af429c49e6589f150bc6ab781d4",
+          "md5": "1110f4672a57e3a1fec2522dda79bd9e"
+        }
+      ]
+    },
+    {
+      "name": "debugVariantAllRuntimePublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_debug",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        },
+        {
+          "group": "androidx.security",
+          "module": "security-crypto",
+          "version": {
+            "requires": "1.1.0-alpha03"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "flutter_secure_storage-0.0.1-debug.aar",
+          "url": "flutter_secure_storage-0.0.1-debug.aar",
+          "size": 27756,
+          "sha512": "8509a1e464264bbbd69d11ef68ce4b5cdcb7623fb4fe7962dbffd37e1740b7aeff4aa227a5341ea5197f8293460dddf1b589c3d9a594eb1103501c1a67f865e7",
+          "sha256": "755fa56d125ba92575d855003cc2e1630f2dabbfc003c866c971c0bb635cdc07",
+          "sha1": "d14b08800cf19af429c49e6589f150bc6ab781d4",
+          "md5": "1110f4672a57e3a1fec2522dda79bd9e"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantAllApiPublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "release",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_release",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "flutter_secure_storage-0.0.1-release.aar",
+          "url": "flutter_secure_storage-0.0.1-release.aar",
+          "size": 26455,
+          "sha512": "7ff86f99abd6f0f916233e74cfe7cedcff3de055b3a2f82291deabc9c6ee6b667fea139033d86a6ac138dd22de5d71f1ddef9a44489562f93fc9f7d8c482e8e3",
+          "sha256": "92c2c39c104f07b65f3aec2cc078c01303e20b9fa4641cd16e0c132fbf8fe957",
+          "sha1": "7cbb1c1f193e9e6c8961c396a9dd02eb8e839e98",
+          "md5": "3bf43af6624bc17d311e958618a512a0"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantAllRuntimePublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "release",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_release",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        },
+        {
+          "group": "androidx.security",
+          "module": "security-crypto",
+          "version": {
+            "requires": "1.1.0-alpha03"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "flutter_secure_storage-0.0.1-release.aar",
+          "url": "flutter_secure_storage-0.0.1-release.aar",
+          "size": 26455,
+          "sha512": "7ff86f99abd6f0f916233e74cfe7cedcff3de055b3a2f82291deabc9c6ee6b667fea139033d86a6ac138dd22de5d71f1ddef9a44489562f93fc9f7d8c482e8e3",
+          "sha256": "92c2c39c104f07b65f3aec2cc078c01303e20b9fa4641cd16e0c132fbf8fe957",
+          "sha1": "7cbb1c1f193e9e6c8961c396a9dd02eb8e839e98",
+          "md5": "3bf43af6624bc17d311e958618a512a0"
+        }
+      ]
+    },
+    {
+      "name": "profileVariantAllApiPublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "profile",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_profile",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "flutter_secure_storage-0.0.1-profile.aar",
+          "url": "flutter_secure_storage-0.0.1-profile.aar",
+          "size": 26457,
+          "sha512": "da1e182a248cd8a5fcb10d656f93fdc31d59349135f8e65d944a83d7bde3a141134a60542d490a7dc111543ddbb3b212e38da1493c02377226fb74d221f30bca",
+          "sha256": "0ef98c60aaaf607f2487a96a9210886b6158cbc1d7c59cd12ed5a1e3a75c1895",
+          "sha1": "95dcbd468196a39500a4d15c443d5ddc545b2ced",
+          "md5": "1e15bab0660e3e0f1765a1f3425f0c02"
+        }
+      ]
+    },
+    {
+      "name": "profileVariantAllRuntimePublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "profile",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_profile",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        },
+        {
+          "group": "androidx.security",
+          "module": "security-crypto",
+          "version": {
+            "requires": "1.1.0-alpha03"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "flutter_secure_storage-0.0.1-profile.aar",
+          "url": "flutter_secure_storage-0.0.1-profile.aar",
+          "size": 26457,
+          "sha512": "da1e182a248cd8a5fcb10d656f93fdc31d59349135f8e65d944a83d7bde3a141134a60542d490a7dc111543ddbb3b212e38da1493c02377226fb74d221f30bca",
+          "sha256": "0ef98c60aaaf607f2487a96a9210886b6158cbc1d7c59cd12ed5a1e3a75c1895",
+          "sha1": "95dcbd468196a39500a4d15c443d5ddc545b2ced",
+          "md5": "1e15bab0660e3e0f1765a1f3425f0c02"
+        }
+      ]
+    }
+  ]
+}

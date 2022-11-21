@@ -1,0 +1,198 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.tekartik.sqflite",
+    "module": "sqflite",
+    "version": "0.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "debugVariantAllApiPublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_debug",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sqflite-0.0.1-debug.aar",
+          "url": "sqflite-0.0.1-debug.aar",
+          "size": 39318,
+          "sha512": "6f7688db04833053098d9c7eea3bbe3b102213eddf0e826642a4458aceed8b9bc68f746e80629b283a799869cc0874f8450eb8b00e40863bec2ab1843a055af8",
+          "sha256": "5e26ca5ceebb731ab59e3974f050655aa1a60dbc71999ac9a56ae5a3d833add0",
+          "sha1": "1222e334ce6a57462a06b87b567f08764c958c77",
+          "md5": "2a8caafc8cf56bc7819e51a0231384f3"
+        }
+      ]
+    },
+    {
+      "name": "debugVariantAllRuntimePublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_debug",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sqflite-0.0.1-debug.aar",
+          "url": "sqflite-0.0.1-debug.aar",
+          "size": 39318,
+          "sha512": "6f7688db04833053098d9c7eea3bbe3b102213eddf0e826642a4458aceed8b9bc68f746e80629b283a799869cc0874f8450eb8b00e40863bec2ab1843a055af8",
+          "sha256": "5e26ca5ceebb731ab59e3974f050655aa1a60dbc71999ac9a56ae5a3d833add0",
+          "sha1": "1222e334ce6a57462a06b87b567f08764c958c77",
+          "md5": "2a8caafc8cf56bc7819e51a0231384f3"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantAllApiPublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "release",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_release",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sqflite-0.0.1-release.aar",
+          "url": "sqflite-0.0.1-release.aar",
+          "size": 37560,
+          "sha512": "34e596fd6c73113a599466a3faae6b121c9380e6356598e16d8034eaa3df681f633f6f1cd7966749e5390355a1f353d9e3969519f102b2e8631d1c9f383d4dd7",
+          "sha256": "60e7bdb40d342014cf57fa81d9661c6d388cb53ae396d684e460dca6764e3614",
+          "sha1": "194d06cac1c6d33f66f0ba48b6e571719456807e",
+          "md5": "ea0372dcc01af33d7187b79a84700a8a"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantAllRuntimePublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "release",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_release",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sqflite-0.0.1-release.aar",
+          "url": "sqflite-0.0.1-release.aar",
+          "size": 37560,
+          "sha512": "34e596fd6c73113a599466a3faae6b121c9380e6356598e16d8034eaa3df681f633f6f1cd7966749e5390355a1f353d9e3969519f102b2e8631d1c9f383d4dd7",
+          "sha256": "60e7bdb40d342014cf57fa81d9661c6d388cb53ae396d684e460dca6764e3614",
+          "sha1": "194d06cac1c6d33f66f0ba48b6e571719456807e",
+          "md5": "ea0372dcc01af33d7187b79a84700a8a"
+        }
+      ]
+    },
+    {
+      "name": "profileVariantAllApiPublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "profile",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_profile",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sqflite-0.0.1-profile.aar",
+          "url": "sqflite-0.0.1-profile.aar",
+          "size": 37562,
+          "sha512": "5242ca1c8dac7d03f98bca67fa030937eb58dfc78d1d27d8e421a0cc238af02c493b8560a986931a9eca1e894f394bb29132a96dc112aae74bff501c57e3b778",
+          "sha256": "d06e78b1666d780e28901b042bb23161e3d8944ff173580ba8ba5f4d84a89b7d",
+          "sha1": "c064e13421c36cddc400f90450a6631da7b64c0d",
+          "md5": "37c052c47c54fbbc407f168a6dbb6742"
+        }
+      ]
+    },
+    {
+      "name": "profileVariantAllRuntimePublication",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "profile",
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.flutter",
+          "module": "flutter_embedding_profile",
+          "version": {
+            "requires": "1.0.0-5c984c26ebc4a0a8897305d3c6bef70ced91090d"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sqflite-0.0.1-profile.aar",
+          "url": "sqflite-0.0.1-profile.aar",
+          "size": 37562,
+          "sha512": "5242ca1c8dac7d03f98bca67fa030937eb58dfc78d1d27d8e421a0cc238af02c493b8560a986931a9eca1e894f394bb29132a96dc112aae74bff501c57e3b778",
+          "sha256": "d06e78b1666d780e28901b042bb23161e3d8944ff173580ba8ba5f4d84a89b7d",
+          "sha1": "c064e13421c36cddc400f90450a6631da7b64c0d",
+          "md5": "37c052c47c54fbbc407f168a6dbb6742"
+        }
+      ]
+    }
+  ]
+}
