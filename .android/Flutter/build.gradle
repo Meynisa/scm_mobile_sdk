@@ -25,39 +25,9 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.library'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-apply plugin: 'maven-publish'
 
 group 'com.ivo.scm_mobile_sdk'
 version '1.0'
-
-ext {
-    packageName = project.getName()
-    libVersion = "0.0.3"
-
-    url = 'https://sociomile.jfrog.io/artifactory'
-    repository = 'sociomile-gradle-release-local'
-    username = 'meynisa03@gmail.com'
-    password = 'AKCp8nH4ZkYYd8L8wVMiuwRzDfrxQyqheVvSkWZ9uVhk65p72dN3mXw9mZc5MoEjiMHZCxqgK'
-
-}
-
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url "https://sociomile.jfrog.io/artifactory/sociomile-gradle-release-local/repo"
-            credentials {
-                username = 'meynisa03@gmail.com'
-                password = 'AKCp8nH4ZkYYd8L8wVMiuwRzDfrxQyqheVvSkWZ9uVhk65p72dN3mXw9mZc5MoEjiMHZCxqgK'
-            }
-        }
-    }
-
-    dependencies {
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.29.3"
-    }
-}
 
 android {
     compileSdkVersion 33
@@ -76,121 +46,6 @@ android {
     }
 }
 
-//artifactoryPublish.skip = true
-
 flutter {
     source '../..'
 }
-
-apply plugin: 'com.jfrog.artifactory'
-apply plugin: 'maven-publish'
-
-def packageName = packageName
-def libraryVersion = libVersion
-
-publishing {
-    publications {
-        aar(MavenPublication) {
-            groupId group
-            version = libraryVersion
-            artifactId project.getName()
-
-            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
-            pom.withXml {
-                def dependencies = asNode().appendNode('dependencies')
-                configurations.getByName("releaseCompileClasspath").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
-                    def dependency = dependencies.appendNode('dependency')
-                    dependency.appendNode('groupId', it.moduleGroup)
-                    dependency.appendNode('artifactId', it.moduleName)
-                    dependency.appendNode('version', it.moduleVersion)
-                }
-            }
-        }
-    }
-}
-
-artifactory {
-    contextUrl = url
-    publish {
-        repository {
-            repoKey = repository
-
-            username = username
-            password = password
-        }
-        defaults {
-            publications('aar')
-            publishArtifacts = true
-
-            properties = ['qa.level': 'basic', 'dev.team': 'core']
-            publishPom = true
-        }
-    }
-}
-
-//artifactory {
-//    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
-//    publish {
-//        repository {
-//            repoKey = 'sociomile-gradle-release-local'
-//            username = "${artifactory_user}"
-//            password = "${artifactory_password}"
-//            maven = true
-//        }
-//        defaults {
-//            // Reference to Gradle publications defined in the build script.
-//            // This is how we tell the Artifactory Plugin which artifacts should be
-//            // published to Artifactory.
-//            publishArtifacts = true
-//            // Properties to be attached to the published artifacts.
-//            properties = ['qa.level': 'basic', 'dev.team' : 'core']
-//            publishPom = true // Publish generated POM files to Artifactory (true by default)
-//        }
-//    }
-//    resolve {
-//        repository {
-//            repoKey = 'sociomile-gradle-release'
-//            username = "${artifactory_user}"
-//            password = "${artifactory_password}"
-//            maven = true
-//
-//        }
-//    }
-//}
-
-//afterEvaluate {
-//    publishing {
-//        repositories{
-//            maven { url "https://jitpack.io" }
-//        }
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//
-//                groupId = 'com.github.Meynisa'
-//                artifactId = 'scm_mobile_sdk'
-//                version = '0.0.3'
-//            }
-//        }
-//    }
-//}
-
-//subprojects {
-//
-//    publishing {
-//
-//        repositories {
-//            maven { url "https://jitpack.io" }
-//        }
-//
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//
-//                groupId = 'com.github.Meynisa'
-//                artifactId = 'scm_mobile_sdk'
-//                version = '0.0.5'
-//            }
-//        }
-//    }
-//}
