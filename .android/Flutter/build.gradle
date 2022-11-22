@@ -30,34 +30,35 @@ apply plugin: 'maven-publish'
 group 'com.ivo.scm_mobile_sdk'
 version '1.0'
 
-ext {
-    packageName = project.getName()
-    libVersion = "0.0.3"
+//ext {
+//    packageName = project.getName()
+//    libVersion = "0.0.1"
+//
+//    url = 'https://scm.jfrog.io/artifactory'
+//    repository = 'sociomile-hybrid-gradle-release-local'
+//    username = 'meynisa03@gmail.com'
+//    password = 'AKCp8nHE2gCo76g9PLMsm2h9sBnrkGmRkvym7gcG6ZJa5KVLyZdmKPHgUHVn5wqbTwBtA5nJK'
+//
+//}
 
-    url = 'https://sociomile.jfrog.io/artifactory'
-    repository = 'sociomile-gradle-release-local'
-    username = 'meynisa03@gmail.com'
-    password = 'AKCp8nH4ZkYYd8L8wVMiuwRzDfrxQyqheVvSkWZ9uVhk65p72dN3mXw9mZc5MoEjiMHZCxqgK'
-
-}
-
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url "https://sociomile.jfrog.io/artifactory/sociomile-gradle-release-local/repo"
-            credentials {
-                username = 'meynisa03@gmail.com'
-                password = 'AKCp8nH4ZkYYd8L8wVMiuwRzDfrxQyqheVvSkWZ9uVhk65p72dN3mXw9mZc5MoEjiMHZCxqgK'
-            }
-        }
-    }
-
-    dependencies {
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.29.3"
-    }
-}
+//buildscript {
+//    repositories {
+//        google()
+//        mavenCentral()
+//        maven {
+//            url 'https://scm.jfrog.io/artifactory/sociomile-hybrid-gradle-release'
+////            url "https://sociomile.jfrog.io/artifactory/sociomile-gradle-release-local/repo"
+//            credentials {
+//                username = 'meynisa03@gmail.com'
+//                password = 'AKCp8nH4ZkYYd8L8wVMiuwRzDfrxQyqheVvSkWZ9uVhk65p72dN3mXw9mZc5MoEjiMHZCxqgK'
+//            }
+//        }
+//    }
+//
+//    dependencies {
+//        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.29.3"
+//    }
+//}
 
 android {
     compileSdkVersion 33
@@ -82,51 +83,62 @@ flutter {
     source '../..'
 }
 
-apply plugin: 'com.jfrog.artifactory'
+//apply plugin: 'com.jfrog.artifactory'
 apply plugin: 'maven-publish'
 
-def packageName = packageName
-def libraryVersion = libVersion
-
-publishing {
-    publications {
-        aar(MavenPublication) {
-            groupId group
-            version = libraryVersion
-            artifactId project.getName()
-
-            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
-            pom.withXml {
-                def dependencies = asNode().appendNode('dependencies')
-                configurations.getByName("releaseCompileClasspath").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
-                    def dependency = dependencies.appendNode('dependency')
-                    dependency.appendNode('groupId', it.moduleGroup)
-                    dependency.appendNode('artifactId', it.moduleName)
-                    dependency.appendNode('version', it.moduleVersion)
-                }
-            }
-        }
-    }
-}
-
-artifactory {
-    contextUrl = url
-    publish {
-        repository {
-            repoKey = repository
-
-            username = username
-            password = password
-        }
-        defaults {
-            publications('aar')
-            publishArtifacts = true
-
-            properties = ['qa.level': 'basic', 'dev.team': 'core']
-            publishPom = true
-        }
-    }
-}
+//def packageName = packageName
+//def libraryVersion = libVersion
+//
+//publishing {
+//    publications {
+//        aar(MavenPublication) {
+//            groupId group
+//            version = libraryVersion
+//            artifactId project.getName()
+//
+//            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+//            pom.withXml {
+//                def dependencies = asNode().appendNode('dependencies')
+//                configurations.getByName("releaseCompileClasspath").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+//                    def dependency = dependencies.appendNode('dependency')
+//                    dependency.appendNode('groupId', it.moduleGroup)
+//                    dependency.appendNode('artifactId', it.moduleName)
+//                    dependency.appendNode('version', it.moduleVersion)
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//artifactory {
+//    contextUrl = url
+//    publish {
+//        repository {
+//            repoKey = repository
+//
+//            username = username
+//            password = password
+//
+//            maven = true
+//        }
+//        defaults {
+//            publications('aar')
+//            publishArtifacts = true
+//
+//            properties = ['qa.level': 'basic', 'dev.team': 'core']
+//            publishPom = true
+//        }
+//        resolve {
+//            repository {
+//                repoKey = 'sociomile-hybrid-gradle-release'
+//                username = username
+//                password = password
+//                maven = true
+//
+//            }
+//        }
+//    }
+//}
 
 //artifactory {
 //    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
@@ -175,22 +187,22 @@ artifactory {
 //    }
 //}
 
-//subprojects {
-//
-//    publishing {
-//
-//        repositories {
-//            maven { url "https://jitpack.io" }
-//        }
-//
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//
-//                groupId = 'com.github.Meynisa'
-//                artifactId = 'scm_mobile_sdk'
-//                version = '0.0.5'
-//            }
-//        }
-//    }
-//}
+subprojects {
+
+    publishing {
+
+        repositories {
+            maven { url "https://jitpack.io" }
+        }
+
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.Meynisa'
+                artifactId = 'scm_mobile_sdk'
+                version = '0.0.5'
+            }
+        }
+    }
+}
