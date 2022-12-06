@@ -26,6 +26,6 @@ cp upload/google-services.json .android/app
 
 cp -r upload/xml .android/app/src/main/res
 
-flutter build aar --build-number 0.0.2
-
+# flutter build aar --build-number 0.0.2
+# ada pengurangan build aar
 echo "[INFO] Moved file done"
