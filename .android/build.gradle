@@ -1,40 +1,10 @@
 // Generated file. Do not edit.
 
-//def gradleProperties = new Properties()
-//def gradlePropertiesFile = new File(buildscript.sourceFile.parentFile.parentFile, 'gradle.properties')
-//if (gradlePropertiesFile.exists()) {
-//    gradlePropertiesFile.withReader('UTF-8') { reader ->
-//        gradleProperties.load(reader)
-//    }
-//}
-//
-//def artifactory_contextUrl = gradleProperties.getProperty('artifactory_contextUrl')
-//if (artifactory_contextUrl == null) {
-//    artifactory_contextUrl = 'https://sociomile.jfrog.io/artifactory'
-//}
-//
-//def artifactory_user = gradleProperties.getProperty('artifactory_user')
-//if (artifactory_user == null) {
-//    artifactory_user = 'meynisa03@gmail.com'
-//}
-//
-//def artifactory_password = gradleProperties.getProperty('artifactory_password')
-//if (artifactory_password == null) {
-//    artifactory_password = 'AKCp8nH4ZkYYd8L8wVMiuwRzDfrxQyqheVvSkWZ9uVhk65p72dN3mXw9mZc5MoEjiMHZCxqgK'
-//}
-
 buildscript {
     ext.kotlin_version = '1.7.10'
     repositories {
         google()
         mavenCentral()
-//        maven {
-//            url 'https://sociomile.jfrog.io/artifactory/sociomile-gradle-release'
-//            credentials {
-//                username = "${artifactory_user}"
-//                password = "${artifactory_password}"
-//            }
-//        }
     }
 
     dependencies {
@@ -46,19 +16,15 @@ buildscript {
 }
 
 allprojects {
-//    apply plugin: 'com.jfrog.artifactory'
-//    apply plugin: 'maven-publish'
     repositories {
         google()
         mavenCentral()
     }
 }
 
-//artifactoryPublish.skip = true
-
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'maven-publish'
+// apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 33
@@ -70,33 +36,3 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
-
-//artifactory {
-//    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
-//    publish {
-//        repository {
-//            repoKey = 'sociomile-gradle-release-local'
-//            username = "${artifactory_user}"
-//            password = "${artifactory_password}"
-//            maven = true
-//        }
-//        defaults {
-//            // Reference to Gradle publications defined in the build script.
-//            // This is how we tell the Artifactory Plugin which artifacts should be
-//            // published to Artifactory.
-//            publishArtifacts = true
-//            // Properties to be attached to the published artifacts.
-//            properties = ['qa.level': 'basic', 'dev.team' : 'core']
-//            publishPom = true // Publish generated POM files to Artifactory (true by default)
-//        }
-//    }
-//    resolve {
-//        repository {
-//            repoKey = 'sociomile-gradle-release'
-//            username = "${artifactory_user}"
-//            password = "${artifactory_password}"
-//            maven = true
-//
-//        }
-//    }
-//}

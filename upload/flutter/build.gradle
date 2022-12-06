@@ -1,0 +1,166 @@
+// Generated file. Do not edit.
+
+def localProperties = new Properties()
+def localPropertiesFile = new File(buildscript.sourceFile.parentFile.parentFile, 'local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new FileNotFoundException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.library'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+// apply plugin: 'maven-publish'
+
+group 'com.ivo.scm_mobile_sdk'
+version '1.0'
+
+ext {
+    packageName = project.getName()
+    libVersion = "0.0.1"
+
+    url = 'https://scm.jfrog.io/artifactory'
+    repository = 'sociomile-hybrid-gradle-release-local'
+    username = 'sdk'
+    password = 'eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJ3Z3FQX3JqQVdsN0lRbWgtc1pQTl9fSWh2RGhkNFFybks2M1NHdm9FRXhBIn0.eyJleHQiOiJ7XCJyZXZvY2FibGVcIjpcInRydWVcIn0iLCJzdWIiOiJqZmFjQDAxZ2hxbjYxZnRwaGszMGtyOWE2YzExbmEyXC91c2Vyc1wvc2RrIiwic2NwIjoiYXBwbGllZC1wZXJtaXNzaW9uc1wvYWRtaW4iLCJhdWQiOiIqQCoiLCJpc3MiOiJqZmZlQDAwMCIsImlhdCI6MTY2OTI2MDE5NCwianRpIjoiMGRiNjUxMDktMTRkMi00ZTQ1LWE5NmYtMzEzYWQ5NjkxYjQ1In0.ES619IVH3IFczv0WoBHV4A0_mJg2-ma0aOT5pKsVwUqpHBsqRuYPUvOuywGkzOarZI5guFHsJJmHlfXGN1x1L3bEEpXmJ953s2AVsczbeWbRHgz_9qp6hoVE351_FRxqIMcAAPrIQB_Ta0_aCh2mWm1j7MKtUojC8AnY19EdLkiCSsTkYH0ua2pJcTWG0FymMaoDDRf8pKzFjYv3eG3CD_WiJjFD6yZin7drexiOmpquU8XvmETtcPgq7Xwqg-8qUkLqODwnNE73YgwAlNQ92ETrFU8yHpNIkciaaX9QbiZ-Zs0Ogt9HW1FEcre3lut9MtjWCCtq9gyGikjwQ258ug'
+//    username = 'meynisa03@gmail.com'
+//    password = 'AKCp8nHE2gCo76g9PLMsm2h9sBnrkGmRkvym7gcG6ZJa5KVLyZdmKPHgUHVn5wqbTwBtA5nJK'
+
+}
+
+// buildscript {
+//     repositories {
+//         google()
+//         mavenCentral()
+//         maven {
+//             url 'https://scm.jfrog.io/artifactory/sociomile-hybrid-gradle-release'
+// //            url "https://sociomile.jfrog.io/artifactory/sociomile-gradle-release-local/repo"
+//             credentials {
+//                 username = 'meynisa03@gmail.com'
+//                 password = 'AKCp8nH4ZkYYd8L8wVMiuwRzDfrxQyqheVvSkWZ9uVhk65p72dN3mXw9mZc5MoEjiMHZCxqgK'
+//             }
+//         }
+//     }
+
+//     dependencies {
+//         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.29.3"
+//     }
+// }
+
+android {
+    compileSdkVersion 33
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 20
+        targetSdkVersion 33
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+// apply plugin: 'com.jfrog.artifactory'
+
+// def packageName = packageName
+// def libraryVersion = libVersion
+
+// publishing {
+//     publications {
+//         aar(MavenPublication) {
+//             groupId group
+//             version = libraryVersion
+//             artifactId project.getName()
+
+//             artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+//             pom.withXml {
+//                 def dependencies = asNode().appendNode('dependencies')
+//                 configurations.getByName("releaseCompileClasspath").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+//                     def dependency = dependencies.appendNode('dependency')
+//                     dependency.appendNode('groupId', it.moduleGroup)
+//                     dependency.appendNode('artifactId', it.moduleName)
+//                     dependency.appendNode('version', it.moduleVersion)
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// artifactory {
+//     contextUrl = url
+//     publish {
+//         repository {
+//             repoKey = repository
+
+//             username = username
+//             password = password
+
+//             maven = true
+//         }
+//         defaults {
+//             publications('aar')
+//             publishArtifacts = true
+
+//             properties = ['qa.level': 'basic', 'dev.team': 'core']
+//             publishPom = true
+//         }
+//         resolve {
+//             repository {
+//                 repoKey = 'sociomile-hybrid-gradle-release'
+//                 username = username
+//                 password = password
+//                 maven = true
+
+//             }
+//         }
+//     }
+// }
+
+//artifactory {
+//    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+//    publish {
+//        repository {
+//            repoKey = 'sociomile-gradle-release-local'
+//            username = "${artifactory_user}"
+//            password = "${artifactory_password}"
+//            maven = true
+//        }
+//        defaults {
+//            publishArtifacts = true
+//            properties = ['qa.level': 'basic', 'dev.team' : 'core']
+//            publishPom = true // Publish generated POM files to Artifactory (true by default)
+//        }
+//    }
+//    resolve {
+//        repository {
+//            repoKey = 'sociomile-gradle-release'
+//            username = "${artifactory_user}"
+//            password = "${artifactory_password}"
+//            maven = true
+//
+//        }
+//    }
+//}
