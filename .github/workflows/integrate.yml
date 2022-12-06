@@ -25,7 +25,45 @@ jobs:
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
 
       - name: Install dependencies
-        run: ./uploaddeps.sh
+        run: 
+          echo "CLEAN DEPENDENCY"
+          cd core
+          flutter clean
+
+          cd ..
+          flutter clean
+
+          echo "[INFO] All dependencies cleansing done"
+          
+          echo "SYNC DEPENDENCY"
+          cd core
+          flutter pub get
+
+          cd ..
+          flutter pub get
+
+          echo "[INFO] All dependencies sync done"
+          
+          echo "BUILD AAR"
+          rm .android/build.gradle
+          cp upload/project/build.gradle .android
+
+          rm .android/Flutter/build.gradle
+          cp upload/flutter/build.gradle .android/Flutter
+
+          rm .android/app/build.gradle
+          cp upload/app/build.gradle .android/app
+
+          rm .android/app/src/main/AndroidManifest.xml
+          cp upload/AndroidManifest.xml .android/app/src/main
+
+          cp upload/google-services.json .android/app
+
+          cp -r upload/xml .android/app/src/main/res
+
+          flutter build aar --build-number 0.0.1
+          
+          echo "[INFO] Moved file done"
 
       - name: Step 1 - Create temporary artifacts folder
         run: mkdir downloads
