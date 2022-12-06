@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: 
           echo "CLEAN DEPENDENCY"
-          cd core
+          cd "core"
           flutter clean
 
           cd ..
