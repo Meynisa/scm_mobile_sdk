@@ -33,16 +33,16 @@ jobs:
           version: stable
 
       - name: Install dependencies
-        run: 
-          echo "CLEAN DEPENDENCY"
+        run: ./uploaddeps.sh
+#           echo "CLEAN DEPENDENCY"
           
-          cd "core"
+#           cd "core"
           
-          flutter clean
+#           flutter clean
 
-          cd ..
+#           cd ..
           
-          flutter clean
+#           flutter clean
 
 #           echo "[INFO] All dependencies cleansing done"
           
