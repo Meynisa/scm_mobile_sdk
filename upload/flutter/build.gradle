@@ -25,23 +25,18 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.library'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-// apply plugin: 'maven-publish'
+apply plugin: 'maven-publish'
 
 group 'com.ivo.scm_mobile_sdk'
 version '1.0'
 
-ext {
-    packageName = project.getName()
-    libVersion = "0.0.1"
+// ext {
+//     packageName = project.getName()
+//     libVersion = "0.0.1"
 
-    url = 'https://scm.jfrog.io/artifactory'
-    repository = 'sociomile-hybrid-gradle-release-local'
-    username = 'sdk'
-    password = 'eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJ3Z3FQX3JqQVdsN0lRbWgtc1pQTl9fSWh2RGhkNFFybks2M1NHdm9FRXhBIn0.eyJleHQiOiJ7XCJyZXZvY2FibGVcIjpcInRydWVcIn0iLCJzdWIiOiJqZmFjQDAxZ2hxbjYxZnRwaGszMGtyOWE2YzExbmEyXC91c2Vyc1wvc2RrIiwic2NwIjoiYXBwbGllZC1wZXJtaXNzaW9uc1wvYWRtaW4iLCJhdWQiOiIqQCoiLCJpc3MiOiJqZmZlQDAwMCIsImlhdCI6MTY2OTI2MDE5NCwianRpIjoiMGRiNjUxMDktMTRkMi00ZTQ1LWE5NmYtMzEzYWQ5NjkxYjQ1In0.ES619IVH3IFczv0WoBHV4A0_mJg2-ma0aOT5pKsVwUqpHBsqRuYPUvOuywGkzOarZI5guFHsJJmHlfXGN1x1L3bEEpXmJ953s2AVsczbeWbRHgz_9qp6hoVE351_FRxqIMcAAPrIQB_Ta0_aCh2mWm1j7MKtUojC8AnY19EdLkiCSsTkYH0ua2pJcTWG0FymMaoDDRf8pKzFjYv3eG3CD_WiJjFD6yZin7drexiOmpquU8XvmETtcPgq7Xwqg-8qUkLqODwnNE73YgwAlNQ92ETrFU8yHpNIkciaaX9QbiZ-Zs0Ogt9HW1FEcre3lut9MtjWCCtq9gyGikjwQ258ug'
-//    username = 'meynisa03@gmail.com'
-//    password = 'AKCp8nHE2gCo76g9PLMsm2h9sBnrkGmRkvym7gcG6ZJa5KVLyZdmKPHgUHVn5wqbTwBtA5nJK'
-
-}
+//     url = 'https://scm.jfrog.io/artifactory'
+//     repository = 'sociomile-hybrid-gradle-release-local'
+// }
 
 // buildscript {
 //     repositories {
@@ -50,10 +45,6 @@ ext {
 //         maven {
 //             url 'https://scm.jfrog.io/artifactory/sociomile-hybrid-gradle-release'
 // //            url "https://sociomile.jfrog.io/artifactory/sociomile-gradle-release-local/repo"
-//             credentials {
-//                 username = 'meynisa03@gmail.com'
-//                 password = 'AKCp8nH4ZkYYd8L8wVMiuwRzDfrxQyqheVvSkWZ9uVhk65p72dN3mXw9mZc5MoEjiMHZCxqgK'
-//             }
 //         }
 //     }
 
@@ -82,6 +73,66 @@ android {
 flutter {
     source '../..'
 }
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "source"
+}
+
+// //AWS
+
+// android.libraryVariants.all { variant ->
+//     variant.outputs.all { output ->
+//         // This creates a publication for each variant
+//         publishing.publications.create(variant.name, MavenPublication) {
+//             // The sources artifact from earlier
+//             artifact sourceJar
+            
+//             // Variant dependent artifact, e.g. release, debug
+//             artifact source: output.outputFile, classifier: output.name
+
+//             // Go through all the dependencies for each variant and add them to the POM
+//             // file as dependencies
+//             pom.withXml {
+//                 def dependencies = asNode().appendNode('dependencies')
+
+//                 // Filter out anything that's not an external dependency. You shouldn't
+//                 // be publishing artifacts that depend on local (e.g. project) dependencies,
+//                 // but who knows...
+//                 configurations.getByName(variant.name + "CompileClasspath").allDependencies
+//                         .findAll { it instanceof ExternalDependency }
+//                         .each {
+//                     def dependency = dependencies.appendNode('dependency')
+
+//                     dependency.appendNode('groupId', it.group)
+//                     dependency.appendNode('artifactId', it.name)
+//                     dependency.appendNode('version', it.version)
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// // Ensure that the publish task depends on assembly
+// tasks.all { task ->
+//     if (task instanceof AbstractPublishToMaven) {
+//         task.dependsOn assemble
+//     }
+// }
+
+// publishing {
+//     repositories {
+//         maven {
+//             url "s3://sociomile-sdk.s3.amazonaws.com"
+//             credentials(AwsCredentials) {
+//                 accessKey "AKIATQGAEXMPTWJKIOXN"
+//                 secretKey "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"
+//             }
+//         }
+//     }
+// }
+
+// JFROG
 
 // apply plugin: 'com.jfrog.artifactory'
 
@@ -139,7 +190,7 @@ flutter {
 //     }
 // }
 
-//artifactory {
+// artifactory {
 //    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
 //    publish {
 //        repository {
@@ -160,7 +211,7 @@ flutter {
 //            username = "${artifactory_user}"
 //            password = "${artifactory_password}"
 //            maven = true
-//
+
 //        }
 //    }
-//}
+// }
