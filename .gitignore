@@ -108,3 +108,5 @@ app.*.map.json
 #ios & android
 .ios
 #.android
+
+.fvm/flutter_sdk
