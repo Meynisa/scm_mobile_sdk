@@ -107,4 +107,4 @@ app.*.map.json
 
 #ios & android
 .ios
-#.android
+.android
