@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import '../../../main_lib.dart';
+import 'package:scm_mobile_sdk/main_lib.dart';
 
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -137,7 +137,6 @@ class LoginController extends GetxController {
       // projectId: result.data!.projects![0].id ?? 0);
 
       isSubmit.value = false;
-      Get.toNamed(AppPages.MAIN_TABBAR);
     } on DioError catch (error) {
       isSubmit.value = false;
       printError(info: 'Error fetching me setting : ${error.message}');

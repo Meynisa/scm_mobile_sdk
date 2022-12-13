@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import '../../../main_lib.dart';
+import 'package:scm_mobile_sdk/main_lib.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class SocketController extends GetxController {
@@ -78,9 +78,9 @@ class SocketController extends GetxController {
         });
       } else if (data["section"] == 'refresh_online') {
         if (data['data']['user']['status'] == null) {
-          ChatContentController? chatContentControlller;
-          chatContentControlller = ChatContentController();
-          chatContentControlller.fetchStreamMessage();
+          // ChatContentController? chatContentControlller;
+          // chatContentControlller = ChatContentController();
+          // chatContentControlller.fetchStreamMessage();
         } else {
           //nothing happened
         }

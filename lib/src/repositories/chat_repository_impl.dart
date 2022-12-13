@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import '../../../main_lib.dart';
+import 'package:scm_mobile_sdk/main_lib.dart';
 
 class ChatRepositoryImpl extends ChatRepository {
   final ChatServices _chatServices = ChatServices();

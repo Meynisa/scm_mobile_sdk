@@ -1,12 +1,5 @@
 export 'login_page.dart';
 export 'splash_screen.dart';
-export 'main_tabbar.dart';
 export 'chat_room_page.dart';
-export 'chat_content_page.dart';
 export 'chat_components/chat_components.dart';
 export 'picture_detail_page.dart';
-export 'detail_profile_page.dart';
-export 'edit_profile_page.dart';
-export 'category_page.dart';
-export 'history_page.dart';
-export 'profile_agent_page.dart';

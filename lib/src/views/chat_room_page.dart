@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import '../../../main_lib.dart';
+import 'package:scm_mobile_sdk/main_lib.dart';
 
 class ChatRoomPage extends GetView<ChatRoomController> {
   const ChatRoomPage({Key? key}) : super(key: key);
@@ -43,94 +43,67 @@ class ChatRoomPage extends GetView<ChatRoomController> {
                         height: 1,
                         thickness: 1,
                         color: ColorsCollection.cDivider),
-                    Get.parameters['ticket_type'] != TicketType.closed.name
-                        ? Container(
-                            decoration: const BoxDecoration(boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromARGB(10, 0, 0, 0),
-                                  offset: Offset(0.0, -4.0),
-                                  blurRadius: 6.0)
-                            ], color: Color(0xFFF5F5F5)),
-                            child: _composeWidget(context))
-                        : Container()
+                    _composeWidget(context)
                   ])
                 ]))));
   }
 
   AppBar _appBarWidget() {
     return AppBar(
-      centerTitle: false,
-      automaticallyImplyLeading: false,
-      elevation: 0,
-      toolbarHeight: 64.w,
-      title: Align(
-          alignment: Alignment.bottomCenter,
-          child: Row(children: [
-            IconButton(
-                alignment: Alignment.centerLeft,
-                onPressed: () => controller.unlockMessage(),
-                icon: const Icon(Icons.arrow_back_ios)),
-            const Expanded(child: ChatRoomHeaderComponents())
-          ])),
-      // actions: [_actionAppbarWidget()]
-    );
-  }
-
-  _actionAppbarWidget() {
-    return PopupMenuButton(
-        icon: const Icon(Icons.more_vert_rounded),
-        iconSize: 24.w,
-        onSelected: (v) => controller.onSelectPopupBtn(v),
-        itemBuilder: (BuildContext context) {
-          return controller.ticketData.value.isClose == false
-              ? controller.menuTickets.map((MenuRoom value) {
-                  return PopupMenuItem<MenuRoom>(
-                      value: value,
-                      child: Text(value.name.capitalizeFirst!, style: body1()));
-                }).toList()
-              : controller.menuCloseTickets.map((MenuRoomCloseType value) {
-                  return PopupMenuItem<MenuRoomCloseType>(
-                      value: value,
-                      child: Text(value.name.capitalizeFirst!, style: body1()));
-                }).toList();
-        });
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        toolbarHeight: 64.w,
+        title: const Expanded(child: ChatRoomHeaderComponents()));
   }
 
   _contentMessageWidget() {
-    return GetBuilder<SocketController>(builder: (socketController) {
-      return socketController.messages.isEmpty
-          ? Container()
-          : GroupedListView<TicketStreams, DateTime>(
-              elements: socketController.messages,
-              groupBy: (TicketStreams message) => DateTime(
-                  message.dateTime!.year,
-                  message.dateTime!.month,
-                  message.dateTime!.day),
-              groupHeaderBuilder: (TicketStreams message) => SizedBox(
-                  height: 40,
-                  child: Center(
-                      child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                              DateFormat.yMMMd().format(message.dateTime!),
-                              style: body3()
-                                  .copyWith(color: const Color(0xFF767676)))))),
-              itemBuilder: (context, TicketStreams message) => InkWell(
-                  onLongPress: () {
-                    Clipboard.setData(ClipboardData(text: message.content));
-                    Get.snackbar('Sukses', 'Berhasil Tersalin',
-                        backgroundColor: ColorsCollection.cBlue,
-                        snackPosition: SnackPosition.BOTTOM,
-                        colorText: Colors.white,
-                        dismissDirection: DismissDirection.horizontal,
-                        animationDuration: const Duration(milliseconds: 400));
-                  },
-                  child: ChatRoomMessageComponent(item: message)),
-              reverse: true,
-              floatingHeader: true,
-              useStickyGroupSeparators: true,
-              order: GroupedListOrder.DESC);
-    });
+    return Stack(children: [
+      Obx(() {
+        return controller.isLoadingHistory.value
+            ? Positioned(
+                left: 0,
+                right: 0,
+                top: 0,
+                child: Center(child: AlertDialogCustom().lazyLoadWidget()))
+            : Container();
+      }),
+      GetBuilder<SocketController>(builder: (socketController) {
+        return socketController.messages.isEmpty
+            ? Container()
+            : GroupedListView<TicketStreams, DateTime>(
+                controller: controller.scrollController,
+                elements: socketController.messages,
+                groupBy: (TicketStreams message) => DateTime(
+                    message.dateTime!.year,
+                    message.dateTime!.month,
+                    message.dateTime!.day),
+                groupHeaderBuilder: (TicketStreams message) => SizedBox(
+                    height: 40,
+                    child: Center(
+                        child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                                DateFormat.yMMMd().format(message.dateTime!),
+                                style: body3().copyWith(
+                                    color: const Color(0xFF767676)))))),
+                itemBuilder: (context, TicketStreams message) => InkWell(
+                    onLongPress: () {
+                      Clipboard.setData(ClipboardData(text: message.content));
+                      Get.snackbar('Sukses', 'Berhasil Tersalin',
+                          backgroundColor: ColorsCollection.cBlue,
+                          snackPosition: SnackPosition.BOTTOM,
+                          colorText: Colors.white,
+                          dismissDirection: DismissDirection.horizontal,
+                          animationDuration: const Duration(milliseconds: 400));
+                    },
+                    child: ChatRoomMessageComponent(item: message)),
+                reverse: true,
+                floatingHeader: true,
+                useStickyGroupSeparators: true,
+                order: GroupedListOrder.DESC);
+      })
+    ]);
   }
 
   Widget _composeWidget(BuildContext context) {
@@ -140,19 +113,6 @@ class ChatRoomPage extends GetView<ChatRoomController> {
             margin: const EdgeInsets.only(
                 left: 5.0, right: 10, top: 10, bottom: 10),
             child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-              IconButton(
-                  iconSize: 15,
-                  onPressed: () => const TemplateMessageComponent()
-                      .templeBottomSheet(context),
-                  icon: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color:
-                              Color(configController.colorThemeDefault.value)),
-                      child: Icon(Icons.text_fields_rounded,
-                          color: Color(
-                              configController.lblColorThemeDefault.value)))),
               Flexible(child: Obx(() {
                 return PrimaryTextfield(
                     textEditingController: controller.messageController,
@@ -162,12 +122,7 @@ class ChatRoomPage extends GetView<ChatRoomController> {
                     radius: 25,
                     maxLine: controller.isMaxLine.value ? 10 : null);
               })),
-              Obx(() {
-                return controller.ticketData.value.service == 'whatsapp' ||
-                        controller.ticketData.value.service == 'chat'
-                    ? const AttachmentChatComponent()
-                    : Container();
-              }),
+              const AttachmentChatComponent(),
               Obx(() {
                 return controller.isValidMessage.value
                     ? IconButton(

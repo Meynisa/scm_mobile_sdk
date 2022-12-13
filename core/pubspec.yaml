@@ -14,22 +14,15 @@ dependencies:
     git:
       url: https://github.com/hurshi/dio-http-cache.git
   dio_http_formatter:
-  connectivity_plus: ^3.0.2
+  connectivity_plus:
   equatable: 
-  logger: 
   flutter_secure_storage: 
   loading_indicator: 
   flutter_svg: 
   flutter_screenutil:
   get_storage: 
-  shimmer: 
   intl:
-  path_provider:
   html: ^0.15.0
-  # share:
-  flutter_localizations:
-    sdk: flutter
-  # pdf: 
   # permission_handler: 
   # firebase_analytics: ^9.3.3
   # firebase_core: ^1.21.1

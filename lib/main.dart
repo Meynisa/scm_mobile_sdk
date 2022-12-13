@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:scm_mobile_sdk/main_lib.dart';
+import 'main_lib.dart';
 
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
