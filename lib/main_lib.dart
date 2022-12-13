@@ -1,10 +1,9 @@
-library sociomile_mobile_sdk;
+library scm_mobile_sdk;
 
 export 'package:get/get.dart';
 export 'src/views/views.dart';
 export 'src/responses/responses.dart';
 export 'src/repositories/repositories.dart';
-export 'src/models/models.dart';
 export 'src/controller/controller.dart';
 export 'src/bindings/bindings.dart';
 export 'src/parameters/parameters.dart';

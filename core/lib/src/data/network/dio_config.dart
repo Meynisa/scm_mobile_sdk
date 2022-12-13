@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
-// import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/instance_manager.dart';
 
 class DioConfig {
   static String _baseUrl = Endpoint.baseUrl;
 
   static late DioCacheManager? _dioCacheManager;
 
-  // final Connectivity _connectivity = Get.find<Connectivity>();
+  final Connectivity _connectivity = Get.find<Connectivity>();
 
   static final BaseOptions _baseOptions = BaseOptions(
     connectTimeout: 30000,
@@ -255,34 +255,34 @@ class DioConfig {
   }
 
   Future<bool> clearAllCache() async {
-    // ConnectivityResult result = await _connectivity.checkConnectivity();
-    // if (result != ConnectivityResult.none) {
-    //   await _dioCacheManager!.clearAll();
-    //   return true;
-    // } else {
-    return false;
-    // }
+    ConnectivityResult result = await _connectivity.checkConnectivity();
+    if (result != ConnectivityResult.none) {
+      await _dioCacheManager!.clearAll();
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<bool> clearCache(String primaryKey, String requestMethod,
       {String? subKey}) async {
-    // ConnectivityResult result = await _connectivity.checkConnectivity();
-    // if (result != ConnectivityResult.none) {
-    //   await _dioCacheManager!.delete(
-    //     primaryKey,
-    //     requestMethod: requestMethod,
-    //     subKey: subKey,
-    //   );
-    //   await _dioCacheManager!.delete(
-    //     'ADD KEY HERE',
-    //     requestMethod: 'GET',
-    //   );
-    //   await _dioCacheManager!.delete('ADD KEY HERE', requestMethod: 'GET');
+    ConnectivityResult result = await _connectivity.checkConnectivity();
+    if (result != ConnectivityResult.none) {
+      await _dioCacheManager!.delete(
+        primaryKey,
+        requestMethod: requestMethod,
+        subKey: subKey,
+      );
+      await _dioCacheManager!.delete(
+        'ADD KEY HERE',
+        requestMethod: 'GET',
+      );
+      await _dioCacheManager!.delete('ADD KEY HERE', requestMethod: 'GET');
 
-    //   return true;
-    // } else {
-    return false;
-    // }
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 

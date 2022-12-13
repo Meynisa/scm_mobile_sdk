@@ -1,17 +1,7 @@
 export 'login_controller.dart';
-export 'main_tabbar_controller.dart';
-export 'chat_content_controller.dart';
 export 'chat_room_controller.dart';
 export 'socket_controller.dart';
-export 'category_controller.dart';
-export 'detail_profile_controller.dart';
-export 'edit_profile_controller.dart';
-export 'filter_controller.dart';
 export 'notification_controller.dart';
-export 'custom_tabview_controller.dart';
 export 'socket_extender.dart';
-export 'template_message_controller.dart';
-export 'history_controller.dart';
-export 'profile_agent_controller.dart';
 export 'attachment_chat_controller.dart';
 export 'custom_config_controller.dart';

@@ -1,12 +1,11 @@
 import 'dart:io';
 import 'package:core/core.dart';
-import '../../../main_lib.dart';
+import 'package:scm_mobile_sdk/main_lib.dart';
 
 class ChatRoomController extends GetxController with StateMixin {
   final ChatRepository _chatRepository = ChatRepositoryImpl();
   TextEditingController messageController = TextEditingController();
   RxBool isValidMessage = false.obs;
-  RxBool isLoading = true.obs;
   RxBool isSent = true.obs;
   bool isTicketAvailable = true;
   String ticketId = '';
@@ -25,22 +24,49 @@ class ChatRoomController extends GetxController with StateMixin {
   TicketParam? _ticketParam;
   TicketResponse? _ticketResponse;
   final SocketController socketController = Get.find<SocketController>();
-  final CategoryController categoryController = Get.find<CategoryController>();
-  final TemplateMessageController _templateMessageController =
-      Get.find<TemplateMessageController>();
   Rx<TicketData> ticketData = TicketData().obs;
   int chatId = 0;
   TicketStreams? data;
   RxBool isMaxLine = false.obs;
   int numLines = 0;
 
+  int pageIdx = 1;
+  double listLayoutSize = 0;
+  double screenSize = 0;
+  ScrollController scrollController = ScrollController();
+  RxBool isHistory = false.obs;
+  RxBool isLoadingHistory = false.obs;
+
   @override
   void onInit() {
+    socketController.messages.clear();
     fetchTicketMessage();
-    _templateMessageController.fetchTemplateMessage(Get.arguments['source']);
     messageController.addListener(() {
       isValidMessage.value = (messageController.text.isNotEmpty) ? true : false;
       _checkInputHeight();
+    });
+
+    screenSize = Get.size.height - 300;
+
+    scrollController.addListener(() {
+      printInfo(
+          info:
+              'SCROLL_POSITIONS: ${scrollController.position}, OUT_OF_RANGE: ${scrollController.position.outOfRange}, offset: ${scrollController.offset}, RANGE: ${scrollController.position.maxScrollExtent}');
+
+      if (scrollController.offset ==
+          scrollController.position.maxScrollExtent) {
+        printInfo(info: 'REFRESH TO HISTORY');
+        if (pageIdx <= ticketData.value.previousTickets!.length) {
+          isHistory.value = true;
+          fetchTicketMessage(
+              idTicket: ticketData
+                  .value
+                  .previousTickets![
+                      ticketData.value.previousTickets!.length - pageIdx]
+                  .id);
+          pageIdx++;
+        }
+      }
     });
 
     super.onInit();
@@ -52,26 +78,46 @@ class ChatRoomController extends GetxController with StateMixin {
     count >= 10 ? isMaxLine.value = true : isMaxLine.value = false;
   }
 
-  void fetchTicketMessage() async {
-    change(null, status: RxStatus.loading());
+  void fetchTicketMessage({String? idTicket}) async {
+    isHistory.value == false
+        ? change(null, status: RxStatus.loading())
+        : isLoadingHistory.value = true;
     try {
       int projectId =
           PreferenceUtils().getFromPreferences(StringPreferences.projectId) ??
-              0;
-      ticketId = Get.arguments['id'] ?? '';
+              90;
+      ticketId = '6374e3b314df60435a87efbe';
       printInfo(info: 'id: $ticketId');
-      _ticketParam = TicketParam(ticketId, projectId: projectId);
+      _ticketParam = TicketParam(idTicket ?? ticketId, projectId: projectId);
       TicketResponse result =
           await _chatRepository.fetchTicketMessage(_ticketParam!);
       _ticketResponse = result;
       ticketData.value = result.data!;
-      socketController.messages.clear();
-      socketController.messages.value = result.data!.streams!;
+      // socketController.messages.clear();
+      result.data!.streams!
+          .map((e) => socketController.messages.value.add(e))
+          .toList();
+
       PreferenceUtils()
           .saveToPreferences(StringPreferences.roomId, result.data!.id!);
-      categoryController.pickedUpTag.value = result.data!.activityCode!;
-      categoryController.roomId.value = result.data!.id!;
       isTicketAvailable = true;
+
+      listLayoutSize = socketController.messages.value.length * 60;
+
+      if (listLayoutSize < screenSize &&
+          pageIdx <= ticketData.value.previousTickets!.length) {
+        printInfo(info: 'REFRESH TO HISTORY');
+
+        fetchTicketMessage(
+            idTicket: ticketData
+                .value
+                .previousTickets![
+                    ticketData.value.previousTickets!.length - pageIdx]
+                .id);
+        pageIdx++;
+        isHistory.value = true;
+        isLoadingHistory.value = true;
+      }
       change(result.data, status: RxStatus.success());
     } on DioError catch (error) {
       isTicketAvailable = false;
@@ -91,6 +137,7 @@ class ChatRoomController extends GetxController with StateMixin {
       change(null, status: RxStatus.error(text));
       printError(info: 'Error fetching ticket message : ${error.message}');
     }
+    isLoadingHistory.value = false;
   }
 
   void _unlockMessage() async {
@@ -105,7 +152,7 @@ class ChatRoomController extends GetxController with StateMixin {
 
   void unlockMessage() {
     PreferenceUtils().deleteDataInPreferences(StringPreferences.ticketData);
-    _unlockMessage();
+    // _unlockMessage();
     Get.back();
   }
 
@@ -165,27 +212,6 @@ class ChatRoomController extends GetxController with StateMixin {
     }
   }
 
-  void closeTicket() async {
-    Get.back();
-    AlertDialogCustom().loading();
-    try {
-      String idTicket =
-          _ticketResponse == null ? ticketId : _ticketResponse!.data!.id!;
-      CloseTicketParam closeTicketParam = CloseTicketParam(idTicket, true);
-      var result = await _chatRepository.closeTicket(closeTicketParam);
-      Get.back();
-      unlockMessage();
-    } on DioError catch (error) {
-      Get.back();
-      printError(info: 'Error close ticket : ${error.message}');
-      AlertDialogCustom().alertDialog(Get.context!, 'Error!', error.message,
-          isOneButton: true, onPressedOK: () {
-        Get.back();
-        const CategoryPage().categoryWidget();
-      });
-    }
-  }
-
   String headerDateConvert(DateTime dateTime) {
     return ((dateTime.day == DateTime.now().day) &&
             (dateTime.month == DateTime.now().month) &&
@@ -203,39 +229,6 @@ class ChatRoomController extends GetxController with StateMixin {
       await launch(url);
     } else {
       throw 'Could not launch $url';
-    }
-  }
-
-  profileOnTapped() {
-    Get.toNamed(AppPages.DETAIL_PROFILE,
-        arguments: _ticketResponse!.data!.toJson());
-  }
-
-  void onSelectPopupBtn(value) {
-    switch (value) {
-      case MenuRoom.history:
-        Get.toNamed(AppPages.HISTORY_PAGE, arguments: {
-          'list_tickets': _ticketResponse!.data!.previousTickets
-        });
-        break;
-      case MenuRoom.category:
-        const CategoryPage().categoryWidget();
-        break;
-      case MenuRoom.close:
-        AlertDialogCustom().alertDialog(Get.context!, 'Are you sure?',
-            'Close ticket number #${_ticketResponse != null ? _ticketResponse!.data!.no! : Get.arguments['no']}?',
-            leftBtnLabel: 'Cancel',
-            rightBtnLabel: 'Yes',
-            onPressedOK: () => closeTicket());
-        break;
-      case MenuRoomCloseType.history:
-        Get.toNamed(AppPages.HISTORY_PAGE, arguments: {
-          'list_tickets': _ticketResponse!.data!.previousTickets
-        });
-        break;
-      case MenuRoomCloseType.category:
-        const CategoryPage().categoryWidget();
-        break;
     }
   }
 

@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import '../../../main_lib.dart';
+import 'package:scm_mobile_sdk/main_lib.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -7,12 +7,8 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 3), () async {
-      printInfo(info: 'get_token: ${PreferenceUtils().getUserToken()}');
-      if (PreferenceUtils().getUserToken() != '') {
-        Get.offNamed(AppPages.MAIN_TABBAR);
-      } else {
-        Get.offNamed(AppPages.LOGIN);
-      }
+      PreferenceUtils().setUserToken(configController.clientKey.value);
+      Get.offNamed(AppPages.CHAT_ROOM);
     });
     return Scaffold(
         body: Stack(children: [

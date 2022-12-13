@@ -1,4 +1,3 @@
-// import 'package:flutter/material.dart';
 import 'package:core/core.dart';
 import 'package:scm_mobile_sdk/main_lib.dart';
 

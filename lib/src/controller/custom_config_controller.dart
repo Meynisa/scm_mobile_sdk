@@ -1,5 +1,4 @@
-import 'package:flutter/services.dart';
-import '../../../main_lib.dart';
+import 'package:scm_mobile_sdk/main_lib.dart';
 
 class CustomConfigController extends GetxController {
   static const platform = MethodChannel('flutter.native/helper');
@@ -12,6 +11,10 @@ class CustomConfigController extends GetxController {
   RxInt colorBtnSend = 0xFF873891.obs;
   RxString responseFontType = 'Ubuntu'.obs;
   Uint8List? uint8List;
+
+  RxString clientKey = ''.obs;
+  RxInt projectId = 0.obs;
+  RxString ticketId = ''.obs;
 
   RxMap<String, dynamic> responseMap =
       {"color": '0xFFFFFFFF', "font": "Lato"}.obs;
@@ -129,6 +132,17 @@ class CustomConfigController extends GetxController {
     responseMap.value = response;
   }
 
+  Future<void> _responseClientKey() async {
+    String response = '';
+    try {
+      final String result = await platform.invokeMethod('clientKey');
+      response = result;
+    } on PlatformException {
+      response = '';
+    }
+    clientKey.value = response;
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -142,5 +156,6 @@ class CustomConfigController extends GetxController {
     _responseLblColorThemeFromNative();
     _responseMapFromNative();
     _responseImgFromNative();
+    _responseClientKey();
   }
 }

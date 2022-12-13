@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:core/core.dart';
-import '../../../main_lib.dart';
+import 'package:scm_mobile_sdk/main_lib.dart';
 
 class AttachmentChatController extends GetxController {
   PlatformFile? pletformFile;

@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../../../main_lib.dart';
+import 'package:scm_mobile_sdk/main_lib.dart';
 
 class NotificationController extends GetxController {
   AndroidNotificationChannel? channel;

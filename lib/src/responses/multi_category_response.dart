@@ -1,4 +1,4 @@
-import '../../../main_lib.dart';
+import 'package:scm_mobile_sdk/main_lib.dart';
 
 class MultiCategoryResponse {
   bool? status;
