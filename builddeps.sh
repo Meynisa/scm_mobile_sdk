@@ -27,4 +27,6 @@ cp -r upload/xml .android/app/src/main/res
 
 flutter build aar --build-number 0.0.1
 
+cp filteringdeps.sh build/host/outputs/repo
+
 echo "[INFO] Moved file done"

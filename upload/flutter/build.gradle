@@ -74,6 +74,14 @@ flutter {
     source '../..'
 }
 
+//task aar_from_aars(type: Copy) {
+//    from('build/host/outputs/repo')
+//    into('build/host/outputs/aar')
+//    include('*.aar')
+//    rename('(.*)', 'my-combined-aar.aar')
+//    dependsOn build
+//}
+
 task sourceJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier "source"
