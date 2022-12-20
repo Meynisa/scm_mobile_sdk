@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:scm_mobile_sdk/main_lib.dart';
 
 final ThemeData lightTheme = new ThemeData(
-    fontFamily: AssetsCollection.fHelvetica,
     brightness: Brightness.light,
     bottomAppBarColor: Colors.white,
     appBarTheme: AppBarTheme(
@@ -58,7 +57,6 @@ Color _getColor(Set<MaterialState> states) {
 }
 
 final ThemeData darkTheme = new ThemeData(
-    fontFamily: AssetsCollection.fHelvetica,
     brightness: Brightness.dark,
     bottomAppBarColor: ColorsCollection.cDarkBg,
     textSelectionTheme:
